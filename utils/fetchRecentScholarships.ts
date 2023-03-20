@@ -1,0 +1,10 @@
+export const fetchRecentScholarships = async () => {
+    const res = await fetch(
+      `http://localhost:3000/api/getRecentScholarships`
+    );
+    const data = await res.json();
+    const recentScholarships: Post[] = data.recentScholarships;
+  
+    return recentScholarships;
+  };
+  
