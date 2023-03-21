@@ -11,21 +11,6 @@ type Props = {
   };
 };
 
-export const revalidate = 86400; // revalidate after one day
-export async function getStaticParams() {
-  const query = groq`*[_type == 'post']{
-    slug
-}`;
-
-  const slugs: Post[] = await sanityClient.fetch(query);
-
-  const slugRoutes = slugs.map((slug) => slug.slug.current);
-
-  return slugRoutes.map((slug) => ({
-    slug,
-  }));
-}
-
 async function Post({ params: { slug } }: Props) {
   const query = groq`
    *[_type=="post" && slug.current == $slug][0]{
@@ -123,3 +108,22 @@ _updatedAt
 }
 
 export default Post;
+
+export async function getStaticPaths() {
+  const query = groq`
+    *[_type=="scholarships" || _type=="grants"]{
+ 
+        slug
+    }
+    `;
+  const posts = await sanityClient.fetch(query);
+  const paths = posts.map((post: Post) => ({
+    params: {
+      slug: post.slug.current,
+    },
+  }));
+  return {
+    paths,
+    fallback: "blocking",
+  };
+}
