@@ -10,8 +10,9 @@ type Props = {};
 
 const Navbar = (props: Props) => {
   const navLinks = [
-    { name: "About Us", link: "about" },
-    { name: "Contact Us", link: "contact" },
+    // { name: "About Us", link: "about" },
+    // { name: "Contact Us", link: "contact" },
+    { name: "Posts", link: "posts" },
   ];
 
   const [open, setOpen] = useState(false);

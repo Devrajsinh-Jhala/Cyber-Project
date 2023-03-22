@@ -5,19 +5,12 @@ import { GetServerSideProps } from "next";
 import { sanityClient } from "@/sanity";
 import { groq } from "next-sanity";
 
-const recentGrantsQuery = groq`
-*[_type == 'grants']{
-  ...,
-  author->,
-  categories[]->
-} | order(_createdAt desc)[0...3]
-`;
 const recentPostsQuery = groq`
 *[_type == 'post']{
   ...,
   author->,
   categories[]->
-} | order(_createdAt desc)[0...3]
+} | order(_createdAt desc)[0...4]
 `;
 
 const Home = async () => {

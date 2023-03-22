@@ -18,12 +18,12 @@ const PostList = ({ posts }: Props) => {
             <div className="flex flex-col cursor-pointer group">
               <div className="relative w-full z-[-10] h-52 drop-shadow-xl group-hover:scale-105 transition-transform duration-200 ease-out">
                 <Image
-                  className="object-contain lg:object-center"
-                  src={urlFor(post?.mainImage && post.mainImage).url()}
+                  className="object-cover   lg:object-center"
+                  src={urlFor(post.mainImage).url()}
                   alt={post.title}
                   fill
                 />
-                <div className="absolute bottom-0 w-full bg-opacity-50 bg-black  rounded  text-white p-5 flex justify-between">
+                <div className="absolute bottom-0 w-full bg-opacity-20 bg-black backdrop-blur-lg rounded drop-shadow-lg text-white p-5 flex justify-between">
                   <div>
                     <p className="font-bold">{post.title}</p>
 
@@ -49,7 +49,10 @@ const PostList = ({ posts }: Props) => {
                 </div>
               </div>
               <div className="mt-5 flex-1">
-                <p className="text-lg font-bold">{post.title}</p>
+                <p className="line-clamp-1 underline text-lg font-bold">
+                  {post.title}
+                </p>
+                <p className="line-clamp-1 text-sm">{post.description}</p>
               </div>
             </div>
           </ClientSideRoute>

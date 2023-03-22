@@ -1,16 +1,15 @@
-// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import { groq } from "next-sanity";
 import { sanityClient } from "../../../sanity";
 
 const query = groq`
-*[_type == 'scholarships']{
+*[_type == 'post']{
   ...,
   author->,
   categories[]->
 } | order(_createdAt desc)
 `;
 type Data = {
-  scholarships: Post[];
+  posts: Post[];
 };
 
 // export default async function handler(
@@ -22,9 +21,8 @@ type Data = {
 // }
 
 export async function GET(request: Request) {
-    const scholarships: Data = await sanityClient.fetch(query);
-    return new Response(JSON.stringify(scholarships), {
+    const posts: Data = await sanityClient.fetch(query);
+    return new Response(JSON.stringify(posts), {
         status: 200,
       });
   }
-  
