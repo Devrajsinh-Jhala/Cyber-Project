@@ -8,6 +8,7 @@ type Props = {
 };
 
 const PostList = ({ posts }: Props) => {
+  console.log(posts);
   return (
     <section className="">
       <hr className="border-[#f7ab0a] mb-10 max-w-[850px] mx-auto" />
