@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import urlFor from "@/sanity";
 import ClientSideRoute from "./ClientSideRoute";
 
@@ -9,6 +9,22 @@ type Props = {
 };
 
 const PostsComponent = ({ posts }: Props) => {
+  // Tags Functionality
+  const [activeFilter, setActiveFilter] = useState("All");
+  const [filterWorks, setFilterWorks] = useState<Post[]>([]);
+  const handleFilter = (item: any) => {
+    setActiveFilter(item);
+    if (item == "All") {
+      setFilterWorks(posts);
+    } else {
+      setFilterWorks(posts.filter((post) => post.categories[0].title === item));
+    }
+  };
+
+  useEffect(() => {
+    setFilterWorks(posts);
+  }, []);
+
   // Search Functionality
   const [search, setSearch] = useState("");
   return (
@@ -24,9 +40,23 @@ const PostsComponent = ({ posts }: Props) => {
           />
         </label>
       </form>
+
+      {/* Tags */}
+      <div className="tag">
+        {["All", "Scholarships", "Grants"].map((item, i) => (
+          <div
+            key={i}
+            onClick={() => handleFilter(item)}
+            className={`${activeFilter === item ? "activeFilter" : ""} tags`}
+          >
+            {item}
+          </div>
+        ))}
+      </div>
+
       <div className="grid grid-cols-1 md:grid-cols-2 px-10 gap-10 gap-y-16 pb-24">
         {/* Posts */}
-        {posts
+        {filterWorks
           .filter((post) => {
             return search.toLowerCase() == ""
               ? post
