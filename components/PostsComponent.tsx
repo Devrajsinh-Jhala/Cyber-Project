@@ -39,20 +39,23 @@ const PostsComponent = ({ posts }: Props) => {
             placeholder="Search grants or scholarships by title..."
           />
         </label>
+        {/* Tags */}
+        <div className="tag flex items-center gap-5 mt-5 mb-10 max-w-[900px] mx-auto justify-start">
+          {["All", "Scholarships", "Grants"].map((item, i) => (
+            <div
+              key={i}
+              onClick={() => handleFilter(item)}
+              className={`${
+                activeFilter === item
+                  ? "activeFilter text-white bg-blue-500"
+                  : ""
+              } tags px-2 py-1 border border-gray-500 rounded-lg cursor-pointer`}
+            >
+              {item}
+            </div>
+          ))}
+        </div>
       </form>
-
-      {/* Tags */}
-      <div className="tag">
-        {["All", "Scholarships", "Grants"].map((item, i) => (
-          <div
-            key={i}
-            onClick={() => handleFilter(item)}
-            className={`${activeFilter === item ? "activeFilter" : ""} tags`}
-          >
-            {item}
-          </div>
-        ))}
-      </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 px-10 gap-10 gap-y-16 pb-24">
         {/* Posts */}
