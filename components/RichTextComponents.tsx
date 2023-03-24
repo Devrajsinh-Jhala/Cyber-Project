@@ -50,20 +50,21 @@ export const RichTextComponents = {
       </span>
     ),
   },
-  //   marks: {
-  //     link: ({ children, value }: any) => {
-  //       const rel = !value.href.startWith("/")
-  //         ? "noreferrer noopener"
-  //         : undefined;
-  //       return (
-  //         <Link
-  //           href={value.href}
-  //           rel={rel}
-  //           className="underline decoration-[#f7ab0a] hover:decoration-black"
-  //         >
-  //           {children}
-  //         </Link>
-  //       );
-  //     },
-  //   },
+  marks: {
+    link: ({ children, value }: any) => {
+      const rel = !value.href.startsWith("/")
+        ? "noreferrer noopener"
+        : undefined;
+      return (
+        <Link
+          target="_blank"
+          href={value.href}
+          rel={rel}
+          className="underline decoration-[#f7ab0a] hover:decoration-black"
+        >
+          {children}
+        </Link>
+      );
+    },
+  },
 };
