@@ -10,9 +10,9 @@ type Props = {};
 
 const Navbar = (props: Props) => {
   const navLinks = [
-    // { name: "About Us", link: "about" },
-    // { name: "Contact Us", link: "contact" },
     { name: "Posts", link: "posts" },
+    { name: "About Us", link: "about" },
+    { name: "Contact Us", link: "contact" },
   ];
 
   const [open, setOpen] = useState(false);
@@ -20,11 +20,15 @@ const Navbar = (props: Props) => {
   return (
     <>
       <nav className="my-10 px-4 max-w-[900px] w-full mx-auto py-2 border border-black dark:border-white rounded-full flex items-center justify-between">
-        <Link onClick={() => setOpen(false)} href={"/"}>
+        <Link
+          className="flex items-center gap-3"
+          onClick={() => setOpen(false)}
+          href={"/"}
+        >
           <Image
             src={logo}
             alt="Research Info Logo"
-            className="h-32 w-32 object-contain"
+            className="h-12 w-12 object-contain"
             priority
           />
         </Link>
@@ -37,7 +41,7 @@ const Navbar = (props: Props) => {
         <ul
           className={` top-32 ${
             open ? "block" : "hidden"
-          } left-0 w-full z-50 text-center md:w-auto md:pl-0  fixed md:static pb-12 md:pb-0 md:flex md:items-center md:justify-between  md:space-x-10 bg-light dark:bg-dark  `}
+          } left-0 w-full z-50 text-center md:w-auto md:pl-0 bg-white fixed md:static pb-12 md:pb-0 md:flex md:items-center md:justify-between  md:space-x-10 bg-light dark:bg-dark  `}
         >
           {navLinks.map((navLink, index) => (
             <Link

@@ -1,6 +1,5 @@
 import Navbar from "@/components/Navbar";
 import PostList from "@/components/PostList";
-import { GetServerSideProps } from "next";
 
 import { sanityClient } from "@/sanity";
 import { groq } from "next-sanity";
