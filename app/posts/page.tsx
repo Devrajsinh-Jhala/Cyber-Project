@@ -15,6 +15,7 @@ const allPostsQuery = groq`
 
 const Posts = async () => {
   const allPosts = await sanityClient.fetch(allPostsQuery);
+  console.log(allPosts.length);
   return (
     <main>
       <Navbar />
