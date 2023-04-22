@@ -1,3 +1,4 @@
+import HeroSection from "@/components/HeroSection";
 import Navbar from "@/components/Navbar";
 import PostList from "@/components/PostList";
 
@@ -21,7 +22,9 @@ const Home = async () => {
       <Navbar />
 
       <main className="max-w-[900px] mx-auto">
-        <p className="max-w-[850px] mx-auto">Recent Grants and Scholarships:</p>
+        <div className="px-10 md:px-0">
+          <HeroSection />
+        </div>
         <PostList posts={recentPosts} />
       </main>
     </main>
