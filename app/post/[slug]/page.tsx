@@ -13,6 +13,13 @@ type Props = {
 };
 
 // revalidate after one day
+/**
+ * This function generates an array of static parameters for all posts in a Sanity.io dataset.
+ * @returns an array of objects, where each object has a single property "slug" with a value
+ * corresponding to a slug retrieved from a Sanity.io dataset. The slugs are retrieved using a GROQ
+ * query and mapped to an array of strings before being mapped again to an array of objects with the
+ * "slug" property.
+ */
 export async function generateStaticParams() {
   const query = groq`*[_type == 'post']{
     slug
